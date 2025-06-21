@@ -2,21 +2,10 @@
 //precisa usar a anotação "use client" para indicar que é um Client Component.
 "use client";
 
+import { getPosts } from "@/lib";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React
-
-//TODO: depois criar uma model e deixar disponível para ser importada em outros componentes. Fazer isso também no component-server de posts.
-interface PostProps {
-  id: number;
-  title: string;
-  body: string;  
-  userId: number;
-}
-
-interface ResponseProps {
-  posts: PostProps[];  
-}
 
 export default function PostsClientComponent() {
   const [posts, setPosts] = useState([] as PostProps[]);
@@ -26,9 +15,14 @@ export default function PostsClientComponent() {
   // manipule o DOM ou execute outras operações que não podem ser feitas diretamente durante a renderização.
 
   useEffect(() => {
+    /** 
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
-      .then((data) => setPosts(data.posts));
+      .then((data) => setPosts(data.posts));*/
+
+    const data = getPosts();//Usando o server component criado na lib/index.tsx
+    data.then((res) => res.json())
+        .then((data) => setPosts(data.posts));
   });
 
   /* Outra forma de fazer a chamada assíncrona usando async/await.
@@ -47,15 +41,33 @@ export default function PostsClientComponent() {
     }, []);
     */
 
+  // Nesse exemplo a função executa normalmente sempre precisar da anotação "use server",
+  // nesse caso executa do lado client e imprime no console do navegador.
+  async function handleClick() {
+    console.log("Button clicked!");
+  }
+
   return (
-    <div className="p-4">
-      {posts.map((post) => (
-        <div key={post.id} className="p-4 border-b">
-          <h2 className="text-xl font-bold">{post.title}</h2>
-          <p className="text-gray-700">{post.body}</p>
-          <p className="text-sm text-gray-500">User ID: {post.userId}</p>
+    <section className="flex flex-col items-center min-h-screen bg-gray-50">
+      <div className="w-full max-w-4xl p-6">
+        <div className="mb-6">
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
+            onClick={handleClick}
+          >
+            Pesquisar
+          </button>
         </div>
-      ))}
-    </div>
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            className="bg-white shadow-xl rounded-lg p-6 mb-6 flex flex-col items-center"
+          >
+            <h1 className="font-bold text-xl mb-2 text-center">{post.title}</h1>
+            <p className="text-gray-500 text-center">{post.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

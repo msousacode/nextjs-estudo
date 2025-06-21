@@ -11,3 +11,7 @@ Loading UI e Streaming
 Revalidate, Cache, ISR
 Middlewares
 Route handlers
+
+
+Projeto usado como referência:
+https://github.com/vercel/commerce/blob/main/lib/shopify/index.ts

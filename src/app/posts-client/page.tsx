@@ -2,7 +2,8 @@
 //precisa usar a anotação "use client" para indicar que é um Client Component.
 "use client";
 
-import { getPosts } from "@/lib";
+
+import { getPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React
@@ -20,10 +21,9 @@ export default function PostsClientComponent() {
       .then((res) => res.json())
       .then((data) => setPosts(data.posts));*/
 
-    const data = getPosts();//Usando o server component criado na lib/index.tsx
-    data.then((res) => res.json())
-        .then((data) => setPosts(data.posts));
-  });
+    getPosts().then((res) => setPosts(res)); //Usando o server component criado na lib/index.tsx
+    
+  },[]);//É necessário passar um array vazio como segundo argumento para que o useEffect seja executado apenas uma vez, após a montagem do componente. Se não tiver esse array, fica chamando infinitamente o endpoint.
 
   /* Outra forma de fazer a chamada assíncrona usando async/await.
     useEffect(() => {

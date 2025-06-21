@@ -4,7 +4,3 @@ interface PostProps {
   body: string;  
   userId: number;
 }
-
-interface ResponseProps {
-  posts: PostProps[];  
-}

@@ -2,8 +2,7 @@
 //precisa usar a anotação "use client" para indicar que é um Client Component.
 "use client";
 
-
-import { getPosts } from "@/lib/posts";
+import { getPostById, getPosts, PostProps } from "@/lib/posts";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React
@@ -22,8 +21,7 @@ export default function PostsClientComponent() {
       .then((data) => setPosts(data.posts));*/
 
     getPosts().then((res) => setPosts(res)); //Usando o server component criado na lib/index.tsx
-    
-  },[]);//É necessário passar um array vazio como segundo argumento para que o useEffect seja executado apenas uma vez, após a montagem do componente. Se não tiver esse array, fica chamando infinitamente o endpoint.
+  }, []); //É necessário passar um array vazio como segundo argumento para que o useEffect seja executado apenas uma vez, após a montagem do componente. Se não tiver esse array, fica chamando infinitamente o endpoint.
 
   /* Outra forma de fazer a chamada assíncrona usando async/await.
     useEffect(() => {
@@ -43,8 +41,8 @@ export default function PostsClientComponent() {
 
   // Nesse exemplo a função executa normalmente sempre precisar da anotação "use server",
   // nesse caso executa do lado client e imprime no console do navegador.
-  async function handleClick() {
-    console.log("Button clicked!");
+  async function handlePesquisar() {
+    getPostById(1).then((res) => setPosts(res ? [res] : [])); //Nesse caso se retornar algum post ele será adicionado ao estado posts, caso contrário, o estado será vazio.
   }
 
   return (
@@ -53,7 +51,7 @@ export default function PostsClientComponent() {
         <div className="mb-6">
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
-            onClick={handleClick}
+            onClick={handlePesquisar}
           >
             Pesquisar
           </button>

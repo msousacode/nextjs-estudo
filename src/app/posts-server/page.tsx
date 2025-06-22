@@ -1,6 +1,7 @@
 // Server Component é uma funcionalidade do Next.js que permite renderizar componentes no servidor antes de enviá-los ao cliente.
 
-import { getPosts } from "@/lib/posts";
+import { getPostById, getPosts, PostProps } from "@/lib/posts";
+import Link from "next/link";
 
 // Por padrão os componentes do Next.js são Server Components, o que significa que eles são renderizados no servidor.
 // Isso permite que você aproveite a renderização do lado do servidor para melhorar o desempenho e a SEO da sua aplicação.
@@ -13,7 +14,7 @@ export default async function PostsServerComponent() {
   //const response = await fetch("https://dummyjson.com/posts");
   //const data: ResponseProps = await response.json();
 
-  const data: PostProps[] = await getPosts();
+  let data: PostProps[] = await getPosts();
 
   // Faz a chamada do lado do servidor e imprime os dados no console\terminal do servidor.
   //console.log(data);
@@ -27,7 +28,7 @@ export default async function PostsServerComponent() {
     Esse padrão deixa o código mais legível e organizado, facilitando a identificação de funções que tratam eventos. Não é obrigatório, mas é uma convenção bastante utilizada na comunidade.
    */
   // Essa função quando anotada com 'use server' é executada no servidor
-  async function handleClick() {
+  async function handlePesquisar() {
     "use server";
     console.log("Button clicked!");
   }
@@ -40,7 +41,7 @@ export default async function PostsServerComponent() {
         <div className="mb-6">
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
-            onClick={handleClick}
+            onClick={handlePesquisar}
           >
             Pesquisar
           </button>
@@ -52,6 +53,7 @@ export default async function PostsServerComponent() {
           >
             <h1 className="font-bold text-xl mb-2 text-center">{post.title}</h1>
             <p className="text-gray-500 text-center">{post.body}</p>
+            <Link className='text-blue-500' href={`/posts-server/${post.id}`}>Acessar detalhes</Link>
           </div>
         ))}
       </div>

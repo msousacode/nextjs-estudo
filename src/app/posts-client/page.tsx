@@ -3,6 +3,7 @@
 "use client";
 
 import { getPostById, getPosts, PostProps } from "@/lib/posts";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React
@@ -41,7 +42,11 @@ export default function PostsClientComponent() {
 
   // Nesse exemplo a função executa normalmente sempre precisar da anotação "use server",
   // nesse caso executa do lado client e imprime no console do navegador.
-  async function handlePesquisar() {
+  async function handlePesquisar(id: number) {
+    getPostById(id).then((res) => setPosts(res ? [res] : [])); //Nesse caso se retornar algum post ele será adicionado ao estado posts, caso contrário, o estado será vazio.
+  }
+
+  async function handlePesquisarV1() {
     getPostById(1).then((res) => setPosts(res ? [res] : [])); //Nesse caso se retornar algum post ele será adicionado ao estado posts, caso contrário, o estado será vazio.
   }
 
@@ -51,7 +56,7 @@ export default function PostsClientComponent() {
         <div className="mb-6">
           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
-            onClick={handlePesquisar}
+            onClick={handlePesquisarV1}
           >
             Pesquisar
           </button>
@@ -63,6 +68,12 @@ export default function PostsClientComponent() {
           >
             <h1 className="font-bold text-xl mb-2 text-center">{post.title}</h1>
             <p className="text-gray-500 text-center">{post.body}</p>
+            <button
+              className="text-blue-500"
+              onClick={() => handlePesquisar(post.id)}
+            >
+              Acessar detalhes
+            </button>
           </div>
         ))}
       </div>

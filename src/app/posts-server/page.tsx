@@ -35,6 +35,7 @@ export default async function PostsServerComponent() {
 
   //TODO transformar essa section em um componente separado reutilizável
   //TODO tranformar o botão em um componente separado reutilizável
+  //TODO criar um component para o loading
   return (
     <section className="flex flex-col items-center min-h-screen bg-gray-50">
       <div className="w-full max-w-4xl p-6">
@@ -51,9 +52,11 @@ export default async function PostsServerComponent() {
             key={post.id}
             className="bg-white shadow-xl rounded-lg p-6 mb-6 flex flex-col items-center"
           >
-            <h1 className="font-bold text-xl mb-2 text-center">{post.title}</h1>
-            <p className="text-gray-500 text-center">{post.body}</p>
-            <Link className='text-blue-500' href={`/posts-server/${post.id}`}>Acessar detalhes</Link>
+            <h1 className="font-bold text-xl mb-2">{post.title}</h1>
+            <p className="text-gray-500">{post.body}</p>
+            <Link className="text-blue-500" href={`/posts-server/${post.id}`}>
+              Acessar detalhes
+            </Link>
           </div>
         ))}
       </div>

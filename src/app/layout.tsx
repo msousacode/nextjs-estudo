@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/page";
 
-// TODO: Laytou principal da aplicação, onde serão importados os componentes principais e as fontes do projeto.
+//Laytou principal da aplicação, onde serão importados os componentes principais e as fontes do projeto.
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -2,8 +2,8 @@
 //precisa usar a anotação "use client" para indicar que é um Client Component.
 "use client";
 
+import PostsList from "@/components/posts/list-post";
 import { getPostById, getPosts, PostProps } from "@/lib/posts";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React
@@ -50,33 +50,5 @@ export default function PostsClientComponent() {
     getPostById(1).then((res) => setPosts(res ? [res] : [])); //Nesse caso se retornar algum post ele será adicionado ao estado posts, caso contrário, o estado será vazio.
   }
 
-  return (
-    <section className="flex flex-col items-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-4xl p-6">
-        <div className="mb-6">
-          <button
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
-            onClick={handlePesquisarV1}
-          >
-            Pesquisar
-          </button>
-        </div>
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="bg-white shadow-xl rounded-lg p-6 mb-6 flex flex-col items-center"
-          >
-            <h1 className="font-bold text-xl mb-2 text-center">{post.title}</h1>
-            <p className="text-gray-500 text-center">{post.body}</p>
-            <button
-              className="text-blue-500"
-              onClick={() => handlePesquisar(post.id)}
-            >
-              Acessar detalhes
-            </button>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+  return <PostsList posts={posts} />;
 }

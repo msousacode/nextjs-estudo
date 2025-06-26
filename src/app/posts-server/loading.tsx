@@ -1,5 +1,5 @@
 //Esse loading é para todo o componente
-export default function Loading() {//TODO fazer um componente de load...
+export default function Loading() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="flex flex-col items-center">

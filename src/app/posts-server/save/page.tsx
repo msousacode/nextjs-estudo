@@ -1,12 +1,14 @@
 import Form from "next/form";
-import createPost from "./actions";
-import Button from "@/components/button";
+import savePost from "./actions";
 
-export default function NewPost() {
+//TODO Ajustar o componente Button para servir Savar - Atualizar
+//TODO Ajustar o h1 para ser um componente
+//TODO Criar um validation para o form
+export default function SavePost() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Criar um novo Post</h1>
-      <Form action={createPost} className="space-y-6">
+      <Form action={savePost} className="space-y-6">
         <div>
           <label
             htmlFor="title"
@@ -25,7 +27,7 @@ export default function NewPost() {
             placeholder="Digite o seu post"
             className="w-full px-4 py-2 border rounded-lg"
           />
-        </div>
+        </div>        
         <button
           type="submit"
           className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"

@@ -4,9 +4,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-4 bg-gray-800 text-white">
       <h1 className="text-xl font-bold">Projeto 1 - Posts</h1>
-      <div className="flex items-center space-x-4">
-        {" "}
-        {/* Agrupamos os links aqui */}
+      <div className="flex items-center space-x-4">        
         <Link
           href="/posts-server"
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
@@ -14,7 +12,7 @@ export default function Header() {
           Posts
         </Link>
         <Link
-          href="/posts-server/new"
+          href="/posts-server/save"
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
         >
           New Post

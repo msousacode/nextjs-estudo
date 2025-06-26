@@ -38,7 +38,7 @@ export async function getById(id: number): Promise<PostProps> {
   return extractResult(result);
 }
 
-export async function add(newPost: NewPost) {
+export async function save(newPost: NewPost) {
   const result = await dataFetch<{ posts: PostProps }>({
     verb: "POST",
     path: "posts/add",

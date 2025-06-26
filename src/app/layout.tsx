@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/page";
+import Header from "@/components/header";
 
 //Laytou principal da aplicação, onde serão importados os componentes principais e as fontes do projeto.
 

@@ -1,5 +1,6 @@
 import { PostProps } from "@/lib/posts";
 import Link from "next/link";
+import Button from "../button";
 
 export default function PostsList({ posts }: { posts: PostProps[] }) {
   /** TODO: Depois verificar o que será feito com esse button, talvez isso possa virar um componente.
@@ -23,9 +24,16 @@ export default function PostsList({ posts }: { posts: PostProps[] }) {
           >
             <h1 className="font-bold text-xl mb-2">{post.title}</h1>
             <p className="text-gray-500">{post.body}</p>
-            <Link className="text-blue-500" href={`/posts-server/${post.id}`}>
-              Acessar detalhes
+
+            <Link
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+              href={`/posts-server/${post.id}`}
+            >
+              Ver detalhes
             </Link>
+                        
+            <Button title="Editar" color="green"/>
+            <Button title="Deletar" color="red"/>
           </div>
         ))}
       </div>

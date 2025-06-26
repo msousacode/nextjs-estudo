@@ -1,7 +1,7 @@
 // Server Component é uma funcionalidade do Next.js que permite renderizar componentes no servidor antes de enviá-los ao cliente.
 
-import PostsList from "@/components/posts/list-post";
-import { getPosts, PostProps } from "@/lib/posts";
+import PostsList from "@/app/posts-server/list/page";
+import { getAll, PostProps } from "@/api";
 
 // Por padrão os componentes do Next.js são Server Components, o que significa que eles são renderizados no servidor.
 // Isso permite que você aproveite a renderização do lado do servidor para melhorar o desempenho e a SEO da sua aplicação.
@@ -14,7 +14,7 @@ export default async function PostsServerComponent() {
   //const response = await fetch("https://dummyjson.com/posts");
   //const data: ResponseProps = await response.json();
 
-  const posts: PostProps[] = await getPosts();
+  const posts: PostProps[] = await getAll();
 
   // Faz a chamada do lado do servidor e imprime os dados no console\terminal do servidor.
   //console.log(data);

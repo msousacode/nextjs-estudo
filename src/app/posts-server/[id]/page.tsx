@@ -1,4 +1,4 @@
-import { getPostById } from "@/lib/posts";
+import { getById } from "@/api";
 
 export default async function DetailPost({
   params,
@@ -7,7 +7,7 @@ export default async function DetailPost({
 }) {
   const { id } = await params;
 
-  const detail = await getPostById(id);
+  const detail = await getById(id);
 
   return (
     <section className="flex flex-col items-center min-h-screen bg-gray-50">

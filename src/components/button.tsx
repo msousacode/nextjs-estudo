@@ -6,14 +6,14 @@ export default function Button({
   color: string;
 }) {
   const colorMap: { [key: string]: string } = {
-    blue: "bg-blue-500 hover:bg-blue-600",
-    red: "bg-red-500 hover:bg-red-600",
-    green: "bg-green-500 hover:bg-green-600",
+    blue: "bg-blue-600 hover:bg-blue-700",
+    red: "bg-red-600 hover:bg-red-700",
+    green: "bg-green-600 hover:bg-green-700",
     // Add more colors as needed
   };
 
   const selectedColorClasses =
-    colorMap[color] || "bg-gray-500 hover:bg-gray-600";
+    colorMap[color] || "bg-gray-600 hover:bg-gray-700";
 
   return (
     <button

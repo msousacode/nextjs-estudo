@@ -1,4 +1,4 @@
-import { dataFetch } from "../data-fetch";
+import { dataFetch } from "../util/data-fetch";
 
 export interface PostProps {
   id: number;
@@ -7,7 +7,12 @@ export interface PostProps {
   userId: number;
 }
 
-export async function getPosts(): Promise<PostProps[]> {
+interface NewPost {
+  title: string;
+  userId: number;
+}
+
+export async function getAll(): Promise<PostProps[]> {
   const result = await dataFetch<{ posts: PostProps[] }>({
     verb: "GET",
     path: "posts",
@@ -24,32 +29,26 @@ export async function getPosts(): Promise<PostProps[]> {
   );
 }
 
-export async function getPostById(id: number): Promise<PostProps> {
+export async function getById(id: number): Promise<PostProps> {
   const result = await dataFetch<{ posts: PostProps }>({
     verb: "GET",
     path: `posts/${id}`,
   });
 
-  return {
-    id: result.body.id,
-    title: result.body.title,
-    body: result.body.body,
-    userId: result.body.userId,
-  } as PostProps;
+  return extractResult(result);
 }
 
-export async function addPost(formData: FormData) {
-  const data = {
-    title: formData.get("title") as string,    
-    userId: 100,
-  };
-
+export async function add(newPost: NewPost) {
   const result = await dataFetch<{ posts: PostProps }>({
     verb: "POST",
     path: "posts/add",
-    _body: data,
+    _body: newPost,
   });
 
+  return extractResult(result);
+}
+
+function extractResult(result: any): PostProps {
   return {
     id: result.body.id,
     title: result.body.title,

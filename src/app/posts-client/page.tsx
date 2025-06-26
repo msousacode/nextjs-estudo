@@ -2,8 +2,8 @@
 //precisa usar a anotação "use client" para indicar que é um Client Component.
 "use client";
 
-import PostsList from "@/components/posts/list-post";
-import { getPostById, getPosts, PostProps } from "@/lib/posts";
+import PostsList from "@/app/posts-server/list/page";
+import { getPostById, getPosts, PostProps } from "@/api";
 import { useEffect, useState } from "react";
 
 //Entrei no mundo do React

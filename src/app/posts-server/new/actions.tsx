@@ -1,7 +1,10 @@
 "use server";
 
-import { addPost } from "@/lib/posts";
+import { add } from "@/api";
 
 export default async function createPost(formData: FormData) {
-  addPost(formData);
+  add({
+    title: formData.get("title") as string,
+    userId: 1,
+  });
 }

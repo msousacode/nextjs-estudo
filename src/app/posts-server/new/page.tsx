@@ -1,5 +1,6 @@
 import Form from "next/form";
 import createPost from "./actions";
+import Button from "@/components/button";
 
 export default function NewPost() {
   return (
@@ -11,9 +12,9 @@ export default function NewPost() {
             htmlFor="title"
             className="flex text-lg font-medium mb-2 items-center"
           >
-            Title
-            <span className="ml-2 px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-lg">
-              Required
+            Título
+            <span className="ml-2 px-2 py-1 text-xs font-semibold text-white bg-red-400 rounded-lg">
+              Obrigatório
             </span>
           </label>
           <input
@@ -21,28 +22,16 @@ export default function NewPost() {
             id="title"
             name="title"
             required
-            placeholder="Enter your post title ..."
-            className="w-full px-4 py-2 border rounded-lg"
-          />
-        </div>
-        <div>
-          <label htmlFor="content" className="block text-lg font-medium mb-2">
-            Content
-          </label>
-          <textarea
-            id="content"
-            name="content"
-            placeholder="Write your post content here ..."
-            rows={6}
+            placeholder="Digite o seu post"
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600"
+          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
         >
-          Create Post
-        </button>
+          Criar Post
+        </button>        
       </Form>
     </div>
   );

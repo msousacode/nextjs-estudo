@@ -2,18 +2,14 @@ import { isError } from "./type-guard";
 
 const endpoint = "https://dummyjson.com/";
 
-type ExtractVariables<T> = T extends { variables: object }
-  ? T["variables"]
-  : never;
-
 export async function dataFetch<T>({
-  variables,
   verb,
   path,
+  _body,
 }: {
-  variables?: ExtractVariables<T>;
   verb: "GET" | "POST";
   path: string;
+  _body?: object;
 }): Promise<{ status: number; body: T } | never> {
   try {
     let result;
@@ -25,9 +21,7 @@ export async function dataFetch<T>({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          ...(variables && { variables }),
-        }),
+        body: JSON.stringify(_body),
       });
     } else {
       result = await fetch(url.href, {
@@ -37,7 +31,7 @@ export async function dataFetch<T>({
         },
       });
     }
-    
+
     if (result.ok == false) {
       throw {
         cause: "unknown",

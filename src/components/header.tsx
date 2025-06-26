@@ -12,7 +12,7 @@ export default function Header() {
       </Link>
 
       <Link
-        href="/posts-server/1"
+        href="/posts-server/new"
         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
       >
         New Post

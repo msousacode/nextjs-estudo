@@ -37,3 +37,23 @@ export async function getPostById(id: number): Promise<PostProps> {
     userId: result.body.userId,
   } as PostProps;
 }
+
+export async function addPost(formData: FormData) {
+  const data = {
+    title: formData.get("title") as string,    
+    userId: 100,
+  };
+
+  const result = await dataFetch<{ posts: PostProps }>({
+    verb: "POST",
+    path: "posts/add",
+    _body: data,
+  });
+
+  return {
+    id: result.body.id,
+    title: result.body.title,
+    body: result.body.body,
+    userId: result.body.userId,
+  } as PostProps;
+}

@@ -6,14 +6,14 @@ export default function Header() {
       <h1 className="text-xl font-bold">My Website</h1>
       <Link
         href="/posts-server"
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
       >
         Posts
       </Link>
 
       <Link
         href="/posts-server/1"
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
       >
         New Post
       </Link>
